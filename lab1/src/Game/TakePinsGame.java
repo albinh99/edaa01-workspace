@@ -9,15 +9,14 @@ public class TakePinsGame {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
-
-
         Board b = new Board(15);
         HumanPlayer hp = new HumanPlayer("Ludvig");
         ComputerPlayer cp = new ComputerPlayer("botAlbin");
+
         System.out.println("Brädet har " + b.getNoPins() + " pinnar");
         //Skapar ett bräde och 2 spelare samt meddelar hur många pinnar brädet börjar med
 
-        while (b.getNoPins()>=0) { // ska vi ha =0?
+        while (b.getNoPins()>=0) {
             if (b.getNoPins() > 0) {
                 System.out.println(hp.getUserId() + " tar pinnar: ");
                 int f;
@@ -26,7 +25,7 @@ public class TakePinsGame {
                     if (f <= 2  && b.getNoPins() - f >= 0 && f!=0) {
                         break;
                     } else {
-                        System.out.println("Du måste ta en eller två pinnar");
+                        System.out.println("Fel input");
                     }
                 }
                 hp.takePins(b, f);
@@ -36,7 +35,13 @@ public class TakePinsGame {
                 break;
             }
 
-            if(b.getNoPins()>0 && b.getNoPins()!= 1) {
+            if(b.getNoPins() == 0){
+                System.out.println(hp.getUserId() + " har vunnit!");
+                break;
+            }
+
+
+            else if(b.getNoPins()>0 && b.getNoPins()!= 1) {
                 int r = rand.nextInt(2) + 1;
                 cp.takePins(b, r);
                 System.out.println(cp.getUserId() + " tog " + r + " pinnar ");
@@ -52,4 +57,6 @@ public class TakePinsGame {
         }
 
     }
+
+
 }
