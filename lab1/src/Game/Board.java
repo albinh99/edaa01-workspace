@@ -16,8 +16,8 @@ public class Board {
 
     }
 
-    public void getNoPins(){
-        System.out.println(noPins);
+    public int getNoPins(){
+        return noPins;
     }
 
 
