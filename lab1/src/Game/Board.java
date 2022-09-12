@@ -7,14 +7,17 @@ public class Board {
     }
 
     public void setUp(int pinnarStart){
+        noPins = pinnarStart;
+
     }
 
     public void takePins(int taPinnar){
+        noPins -= taPinnar;
 
     }
 
-    public int getNoPins(){
-
+    public void getNoPins(){
+        System.out.println(noPins);
     }
 
 
