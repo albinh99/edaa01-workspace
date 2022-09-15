@@ -1,7 +1,6 @@
 package Game;
 
-import static javax.swing.JOptionPane.showInputDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.*;
 
 public class UserInterface {
     public static void printMessage(String msg){
