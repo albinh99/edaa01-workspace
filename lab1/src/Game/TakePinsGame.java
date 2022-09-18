@@ -21,7 +21,7 @@ public class TakePinsGame {
             if(b.getNoPins()!=0){
                 int a = cp.takePins(b);
                 b.takePins(a);
-                UserInterface.printMessage("Datorn tog " + a + " pinnar" + "\n" + "Det finns " + b.getNoPins() + " kvar!" + "\n" + "Din tur!");
+                UserInterface.printMessage("Datorn tog " + a + " pinnar" + "\n" + "Det finns " + b.getNoPins() + " kvar!");
                 if(b.getNoPins() == 0) {
                     UserInterface.printMessage("Datorn har vunnit");
                 }
