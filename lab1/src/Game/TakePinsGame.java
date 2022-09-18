@@ -16,9 +16,45 @@ public class TakePinsGame {
         HumanPlayer hp = new HumanPlayer("Ludvig");
         ComputerPlayer cp = new ComputerPlayer("Albin");
 
-        showMessageDialog(null, "Brädet har " + b.getNoPins() + " pinnar");
-        //Skapar ett bräde och 2 spelare samt meddelar hur många pinnar brädet börjar med
+        UserInterface.printMessage("Brädet har " + b.getNoPins() + " pinnar");
 
+
+        while (true){
+
+            int toint = UserInterface.askForInt("Ta 1 eller 2 pinnar", b.getNoPins());
+            hp.takePins(b, toint);
+            UserInterface.printMessage("" + b.getNoPins());
+
+
+            if(b.getNoPins() == 0){
+                UserInterface.printMessage(hp.getUserId() + " har vunnit!");
+                break;
+            }
+
+
+            else if(b.getNoPins()>0 && b.getNoPins()!= 1) {
+                int r = rand.nextInt(2) + 1;
+                cp.takePins(b, r);
+                UserInterface.printMessage(cp.getUserId() + " tog " + r + " pinnar ");
+                UserInterface.printMessage("Antal pinnar kvar: " + b.getNoPins());
+
+            }
+            else if(b.getNoPins() == 1){
+                cp.takePins(b,1);
+                UserInterface.printMessage(cp.getUserId() + " har vunnit!");
+                break;
+
+
+        }
+
+
+
+
+
+
+
+
+    /*
         while (b.getNoPins()>=0) {
             if (b.getNoPins() > 0) {
                 showMessageDialog(null, hp.getUserId() + " tar pinnar: ");
@@ -59,9 +95,9 @@ public class TakePinsGame {
                 break;
 
             }
-        }
+        }*/
 
     }
 
 
-}
+}}
