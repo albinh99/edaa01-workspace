@@ -11,17 +11,18 @@ public class UserInterface {
     public static int askForInt(String msg) {
         int toInt;
         String inputMsg;
-        //int c = 0;
+
         while(true){
             inputMsg = showInputDialog(msg);
-            if(inputMsg.equals("1")||inputMsg.equals("2")){
+            if (inputMsg == null){
+                return -2;
+            }
+            else if(inputMsg.equals("1")||inputMsg.equals("2")){
                 toInt = Integer.parseInt(inputMsg);
                 break;
                 }
-
-
             else{
-                UserInterface.printMessage("Dålig input skriv 1 eller 2");
+                UserInterface.printMessage("Felaktig input, vänligen ta 1 eller 2 pinnar");
             }
 
         }

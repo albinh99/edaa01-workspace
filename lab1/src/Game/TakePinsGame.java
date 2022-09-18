@@ -1,22 +1,42 @@
 package Game;
 
-
-import java.util.Random;
-import java.util.Scanner;
-
-import static javax.swing.JOptionPane.showInputDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class TakePinsGame {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
-        Board b = new Board(15);
+        Board b = new Board(5);
         HumanPlayer hp = new HumanPlayer("Ludvig");
         ComputerPlayer cp = new ComputerPlayer("Albin");
+        UserInterface.printMessage("Välkommen till spelet!" + "\n" + "Brädet har " + b.getNoPins() + " pinnar" + "\n" + "Du börjar. Ta en eller två pinnar");
 
-        UserInterface.printMessage("Brädet har " + b.getNoPins() + " pinnar");
+
+        while (true) {
+            if(b.getNoPins()!=0) {
+                int c = hp.takePins(b);
+                if (c == -2) {
+                    System.exit(0);
+                } else {
+                    b.takePins(c);
+                }
+            }
+            if(b.getNoPins()!=0){
+                int a = cp.takePins(b);
+                b.takePins(a);
+                UserInterface.printMessage("Datorn tog " + a + " pinnar" + "\n" + "Det finns " + b.getNoPins() + " kvar!" + "\n" + "Din tur!");
+                if(b.getNoPins() == 0) {
+                    UserInterface.printMessage("Datorn har vunnit");
+                }
+            }
+            else{
+                break;
+            }
+
+
+        }
+    }
+}
+
+
+
 
 
 
@@ -71,7 +91,3 @@ public class TakePinsGame {
             }
         }*/
 
-    }
-
-
-}

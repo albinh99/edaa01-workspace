@@ -15,10 +15,11 @@ public class ComputerPlayer extends Player{
 
 
     if (bräda.getNoPins() == 1){
-            return 1;
+        return 1;
         }
         else if (bräda.getNoPins() == 2){
-            return 2;
+
+         return 2;
         } else if (bräda.getNoPins()==4) {
             return 1;
         } else if (bräda.getNoPins() == 5) {

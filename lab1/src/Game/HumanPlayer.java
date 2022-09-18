@@ -10,13 +10,14 @@ public class HumanPlayer extends Player{
     public int takePins(Board bräda) {
         while (true){
 
-            int intInput = UserInterface.askForInt("din tur ");
+            int intInput = UserInterface.askForInt("Din tur");
 
             if (bräda.getNoPins() - intInput < 0){
-                UserInterface.printMessage("Går ej att ta 2, bara en pinner kvar!");
+                UserInterface.printMessage("Det finns bara en pinne kvar");
             }
             else if (bräda.getNoPins() - intInput == 0){
                 UserInterface.printMessage("Grattis! Du har vunnit");
+                return intInput;
 
             }
             else {
