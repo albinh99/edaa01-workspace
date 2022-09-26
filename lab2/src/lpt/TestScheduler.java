@@ -7,7 +7,7 @@ public class TestScheduler {
 	public static void main(String[] args) {
 		Machine[] m = new Machine[3];
 		for (int i = 0; i < m.length; i++) {
-			m[i] = new Machine(i + 1);
+			m[i] = new Machine(i+1);
 		}
 		
 		ArrayList<Job> jobList = new ArrayList<Job>();

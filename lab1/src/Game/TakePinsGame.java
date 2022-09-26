@@ -8,7 +8,6 @@ public class TakePinsGame {
         ComputerPlayer cp = new ComputerPlayer("Albin");
         UserInterface.printMessage("Välkommen till spelet!" + "\n" + "Brädet har " + b.getNoPins() + " pinnar" + "\n" + "Du börjar. Ta en eller två pinnar");
 
-
         while (true) {
             if(b.getNoPins()!=0) {
                 int c = hp.takePins(b);
