@@ -14,13 +14,11 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
+		long t0 = System.nanoTime();
 
 		TextProcessor r = new MultiWordCounter(REGIONS);
 		TextProcessor p = new SingleWordCounter("nils");
 		TextProcessor n = new SingleWordCounter("norge");
-		//TextProcessor stop = new SingleWordCounter("stopwords");
-
-		ArrayList<TextProcessor> allt = new ArrayList<>(Arrays.asList(r,p,n));
 
 
 		Scanner s = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/nilsholg.txt"));
@@ -28,15 +26,20 @@ public class Holgersson {
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
+		Set<String> stopwords = new HashSet<>();
+
 
 		while (scan.hasNext()){
-			stopwords.add(scan.next().toLowerCase());
-
+			String stop = scan.next().toLowerCase();
+			stopwords.add(stop);
 		}
+		TextProcessor stop = new GeneralWordCounter(stopwords);
+
+
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-
+			stop.process(word);
 			r.process(word);
 			p.process(word);
 			n.process(word);
@@ -44,11 +47,13 @@ public class Holgersson {
 
 		s.close();
 
-
-		r.report();
-		p.report();
-		n.report();
-
+		stop.report();
+		//r.report();
+		//p.report();
+		//n.report();
+		//ArrayList<TextProcessor> allt = new ArrayList<>(Arrays.asList(r,p,n,stop));
+		long t1 = System.nanoTime();
+		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 
 	}
 }

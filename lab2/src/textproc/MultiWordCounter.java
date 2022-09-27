@@ -2,9 +2,10 @@ package textproc;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 public class MultiWordCounter implements TextProcessor {
-    Map <String, Integer> map = new HashMap <String, Integer>();
+    Map <String, Integer> map = new TreeMap<String, Integer>();
     public MultiWordCounter (String[] landskap){
         for(String a : landskap){
             map.put(a,0);
