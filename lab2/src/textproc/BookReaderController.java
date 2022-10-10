@@ -2,21 +2,30 @@ package textproc;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Map;
 
 public class BookReaderController {
     public BookReaderController(GeneralWordCounter counter) {
         SwingUtilities.invokeLater(() -> createWindow(counter, "BookReader", 100, 300));
     }
+
+
     private void createWindow(GeneralWordCounter counter, String title,
                               int width, int height) {
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
 
-        JList<Map.Entry<String, Integer>> jlista = new JList<>(new SortedListModel(counter.getWordList()));
-        SortedListModel<Map.Entry<String,Integer>> listModel = new SortedListModel<>();
-        listModel.addListDataListener();
+        SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(counter.getWordList());
+        JList<Map.Entry<String, Integer>> jlista = new JList<>(listModel);
+        pane.add(jlista);
+        jlista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        JScrollPane scrollPane = new JScrollPane(jlista);
+        scrollPane.setPreferredSize(new Dimension(200, 100));
+
+
 
         // pane är en behållarkomponent till vilken de övriga komponenterna (listvy, knappar etc.) ska läggas till.
         frame.pack();
