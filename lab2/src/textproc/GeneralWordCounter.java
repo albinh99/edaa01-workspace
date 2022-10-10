@@ -1,6 +1,7 @@
 package textproc;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GeneralWordCounter implements TextProcessor{
     Map<String, Integer> mapGWC = new TreeMap<String, Integer>();
@@ -9,11 +10,6 @@ public class GeneralWordCounter implements TextProcessor{
 
     public GeneralWordCounter (Set<String> stopwords){
         this.stopwords = stopwords;
-    }
-
-    public List<Map.Entry<String, Integer>> getWordList() {
-
-        return mapGWC.entrySet().stream().toList();
     }
 
     @Override
@@ -53,6 +49,10 @@ public class GeneralWordCounter implements TextProcessor{
         System.out.println(wordList.get(i));
             }
         }
+    public List<Map.Entry<String, Integer>> getWordList() {
+
+        return mapGWC.entrySet().stream().toList();
+    }
 
 
         }

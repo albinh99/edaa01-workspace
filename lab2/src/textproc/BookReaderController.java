@@ -9,6 +9,7 @@ import java.util.Map;
 public class BookReaderController {
     public BookReaderController(GeneralWordCounter counter) {
         SwingUtilities.invokeLater(() -> createWindow(counter, "BookReader", 100, 300));
+        System.out.println(counter.getWordList());
     }
 
 
