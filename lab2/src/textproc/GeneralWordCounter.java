@@ -3,7 +3,6 @@ package textproc;
 import java.util.*;
 
 public class GeneralWordCounter implements TextProcessor{
-
     Map<String, Integer> mapGWC = new TreeMap<String, Integer>();
     Set <String> stopwords;
 
@@ -11,6 +10,12 @@ public class GeneralWordCounter implements TextProcessor{
     public GeneralWordCounter (Set<String> stopwords){
         this.stopwords = stopwords;
     }
+
+    public List<Map.Entry<String, Integer>> getWordList() {
+
+        return mapGWC.entrySet().stream().toList();
+    }
+
     @Override
     public void process(String w) {
         if(!stopwords.contains(w)){
@@ -33,7 +38,7 @@ public class GeneralWordCounter implements TextProcessor{
 
         Set<Map.Entry<String,Integer>> wordSet = mapGWC.entrySet();
         List<Map.Entry<String,Integer>> wordList = new ArrayList<>(wordSet);
-        Collections.sort(wordList,(w1,w2) -> {
+        wordList.sort((w1,w2) -> {
             int valueSorted = w2.getValue()-w1.getValue();
             if (valueSorted == 0){
                 return w1.getKey().compareTo(w2.getKey());
