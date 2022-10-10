@@ -1,6 +1,7 @@
 package textproc;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +20,16 @@ public class BookReaderController {
 
         SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(counter.getWordList());
         JList<Map.Entry<String, Integer>> jlista = new JList<>(listModel);
-        pane.add(jlista);
         jlista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        JLabel label = new JLabel("menyrad");
+        label.setBorder(new EmptyBorder(5,10,5,10));
         JScrollPane scrollPane = new JScrollPane(jlista);
         scrollPane.setPreferredSize(new Dimension(200, 100));
+        scrollPane.setBorder(new EmptyBorder(5,10,5,10));
+
+        pane.add(scrollPane, BorderLayout.CENTER);
+        pane.add(label, BorderLayout.SOUTH);
 
 
 
