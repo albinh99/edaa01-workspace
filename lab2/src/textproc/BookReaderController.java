@@ -26,44 +26,44 @@ public class BookReaderController {
 
         JPanel southPanel = new JPanel();
 
-        JButton alpha = new JButton("Alphabetic");
-            southPanel.add(alpha);
-            alpha.addActionListener(e -> {
-                listModel.sort(Map.Entry.comparingByKey());
-                    });
+        JRadioButton alpha = new JRadioButton("Alphabetic");
+        JRadioButton freq = new JRadioButton("Frequency");
+            ButtonGroup group = new ButtonGroup();
+        JTextField textField = new JTextField();
+            textField.setPreferredSize(new Dimension(300,25));
+        JButton find = new JButton("Find");
+        group.add(alpha);
+        group.add(freq);
+        southPanel.add(alpha);
+        southPanel.add(freq);
+        southPanel.add(textField);
+        southPanel.add(find);
+        pane.add(southPanel, BorderLayout.SOUTH);
 
-        JButton freq = new JButton("Frequency");
-            southPanel.add(freq);
-            freq.addActionListener(e -> {
+        alpha.addActionListener(e -> {
+                listModel.sort(Map.Entry.comparingByKey());
+            });
+
+        freq.addActionListener(e -> {
                 listModel.sort(Map.Entry.comparingByValue());
             });
-        JTextField textField = new JTextField();
-        textField.setPreferredSize(new Dimension(300,25));
-            southPanel.add(textField);
 
-
-
-        JButton find = new JButton("Find");
-            southPanel.add(find);
-            find.addActionListener(e -> {
+        find.addActionListener(e -> {
+                boolean wordNotInList = true;
                 for (int i = 0;  i < listModel.getSize(); i ++){
 
                     if(listModel.getElementAt(i).getKey().equals(textField.getText())){
                         jlista.ensureIndexIsVisible(i);
                         jlista.setSelectedIndex(i);
+                        wordNotInList = false;
                     }
-                    else{
+                    else if (i == listModel.getSize()-1 && wordNotInList){
                         JOptionPane.showMessageDialog(null, "Ordet finns inte");
                     }
-
 
                 }
         });
         frame.getRootPane().setDefaultButton(find);
-
-
-
-        pane.add(southPanel, BorderLayout.SOUTH);
 
 
 
