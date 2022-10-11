@@ -42,20 +42,25 @@ public class BookReaderController {
             southPanel.add(textField);
 
 
+
         JButton find = new JButton("Find");
             southPanel.add(find);
             find.addActionListener(e -> {
                 for (int i = 0;  i < listModel.getSize(); i ++){
 
                     if(listModel.getElementAt(i).getKey().equals(textField.getText())){
-                        System.out.println("hhhhhhh");
                         jlista.ensureIndexIsVisible(i);
                         jlista.setSelectedIndex(i);
-
                     }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Ordet finns inte");
+                    }
+
 
                 }
         });
+        frame.getRootPane().setDefaultButton(find);
+
 
 
         pane.add(southPanel, BorderLayout.SOUTH);
