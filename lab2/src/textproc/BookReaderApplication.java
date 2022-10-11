@@ -39,7 +39,7 @@ public class BookReaderApplication {
         }
 
         s.close();
-        stop.report();
+        //stop.report();
         BookReaderController controller = new BookReaderController(gwc);
 
     }

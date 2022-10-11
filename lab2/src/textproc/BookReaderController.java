@@ -46,10 +46,12 @@ public class BookReaderController {
             southPanel.add(find);
             find.addActionListener(e -> {
                 for (int i = 0;  i < listModel.getSize(); i ++){
-                    System.out.println(listModel.getSize());
-                    if(listModel.getElementAt(i).equals(textField.getText())){
+
+                    if(listModel.getElementAt(i).getKey().equals(textField.getText())){
                         System.out.println("hhhhhhh");
                         jlista.ensureIndexIsVisible(i);
+                        jlista.setSelectedIndex(i);
+
                     }
 
                 }
