@@ -51,7 +51,7 @@ public class GeneralWordCounter implements TextProcessor{
         }
     public List<Map.Entry<String, Integer>> getWordList() {
 
-        return mapGWC.entrySet().stream().toList();
+        return new ArrayList<>(this.mapGWC.entrySet());
     }
 
 

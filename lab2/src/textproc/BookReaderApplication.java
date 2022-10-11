@@ -15,10 +15,6 @@ public class BookReaderApplication {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        TextProcessor r = new MultiWordCounter(REGIONS);
-        TextProcessor p = new SingleWordCounter("nils");
-        TextProcessor n = new SingleWordCounter("norge");
-
         Scanner s = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/nilsholg.txt"));
         Scanner scan = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/undantagsord.txt"));
         s.findWithinHorizon("\uFEFF", 1);
@@ -32,25 +28,19 @@ public class BookReaderApplication {
         }
 
         TextProcessor stop = new GeneralWordCounter(stopwords);
+        GeneralWordCounter gwc = new GeneralWordCounter(stopwords);
 
 
         while (s.hasNext()) {
             String word = s.next().toLowerCase();
             stop.process(word);
-            r.process(word);
-            p.process(word);
-            n.process(word);
+            gwc.process(word);
 
         }
 
         s.close();
         stop.report();
-
-
-        GeneralWordCounter gwc = new GeneralWordCounter(stopwords);
-        BookReaderController brc = new BookReaderController(gwc);
-        gwc.getWordList();
-
+        BookReaderController controller = new BookReaderController(gwc);
 
     }
 }
