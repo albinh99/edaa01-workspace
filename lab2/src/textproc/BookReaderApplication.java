@@ -15,12 +15,13 @@ public class BookReaderApplication {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner s = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/nilsholg.txt"));
-        Scanner scan = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/undantagsord.txt"));
+        Scanner s = new Scanner(new File("/Users/ludvigsjogren/IdeaProjects/edaa01-workspaceGitver2/lab2/nilsholg.txt"));
+        Scanner scan = new Scanner(new File("/Users/ludvigsjogren/IdeaProjects/edaa01-workspaceGitver2/lab2/undantagsord.txt"));
         s.findWithinHorizon("\uFEFF", 1);
         s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
         Set<String> stopwords = new HashSet<>();
+        //System.out.println(stopwords);
 
         while (scan.hasNext()){
             String stop = scan.next().toLowerCase();

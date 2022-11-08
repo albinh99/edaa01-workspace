@@ -21,8 +21,8 @@ public class Holgersson {
 		TextProcessor n = new SingleWordCounter("norge");
 
 
-		Scanner s = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/nilsholg.txt"));
-		Scanner scan = new Scanner(new File("/Users/albinhansson/Documents/edaa01-workspace/lab2/undantagsord.txt"));
+		Scanner s = new Scanner(new File("/Users/ludvigsjogren/IdeaProjects/edaa01-workspaceGitver2/lab2/nilsholg.txt"));
+		Scanner scan = new Scanner(new File("/Users/ludvigsjogren/IdeaProjects/edaa01-workspaceGitver2/lab2/undantagsord.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
@@ -54,6 +54,7 @@ public class Holgersson {
 		//ArrayList<TextProcessor> allt = new ArrayList<>(Arrays.asList(r,p,n,stop));
 		long t1 = System.nanoTime();
 		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
-
+		GeneralWordCounter gwc = new GeneralWordCounter(stopwords);
+		BookReaderController brc = new BookReaderController(gwc);
 	}
 }

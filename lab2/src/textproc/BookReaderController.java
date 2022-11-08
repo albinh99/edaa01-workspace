@@ -63,7 +63,7 @@ public class BookReaderController {
 
                 }
         });
-        frame.getRootPane().setDefaultButton(find);
+        frame.getRootPane().setDefaultButton(find); // söker på enter
 
 
 

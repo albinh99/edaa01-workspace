@@ -37,11 +37,7 @@ public class ListExample {
 		listModel.addAll(nbrs);
 		
 		JList<Integer> listView = new JList<>(listModel);
-		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listView.addListSelectionListener(event -> {
-			label.setText(Integer.toString(listView.getSelectedIndex()) + ": "
-					+ Integer.toString(listView.getSelectedValue()));
-		});
+
 		
 		JScrollPane scrollPane = new JScrollPane(listView);
 		scrollPane.setPreferredSize(new Dimension(200, 100));
