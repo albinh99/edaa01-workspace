@@ -23,15 +23,17 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		QueueNode<E> n = new QueueNode<>(e);
 		if (last == null){
 			last = n;
-			size ++;
-			return true;
+			last.next = last;
+			//System.out.println("last: " + last.element);
 		}
 		else{
 		n.next = last.next;
 		last.next = n;
-		size ++;
-		return true;
+		last = n;
 		}
+		size ++;
+		//System.out.println("lastttt: " + last.element);
+		return true;
 	}
 	
 	/**	
@@ -53,7 +55,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		{
 			return null;
 		}
-		return last.element;
+		return last.next.element;
 	}
 
 	/**	
@@ -63,10 +65,12 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return 	the head of this queue, or null if the queue is empty 
 	 */
 	public E poll() {
+
 		if (last == null){
+			//System.out.println("jag körs");
 			return null;
 		}
-		E temp = last.element;
+		E temp = last.next.element;
 		QueueNode<E> p = last;
 		if (size == 1){
 			size --;
@@ -74,15 +78,19 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			return temp;
 		}
 
-		for (int i = 0 ; i < size; i ++){
+		last.next = last.next.next;
+		size --;
+		/*
+		for (int i = 1 ; i < size-1; i ++)
+		{
 			p = p.next;
-			if (i == size -1){
-				last = p;
-				size --;
-				return temp;
-			}
 		}
-	return null;
+		size --;
+		last = p;
+		System.out.println("nu jag");
+
+		 */
+		return temp;
 	}
 	
 	/**	
@@ -90,7 +98,14 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return an iterator over the elements in this queue
 	 */	
 	public Iterator<E> iterator() {
-		return null;
+		return new QueueIterator();
+	}
+
+	private class QueueIterator implements Iterator<E> {
+		private QueueNode<E> pos;
+		private QueueIterator() {...}
+		public boolean hasNext() {...}
+		public E next() {...}
 	}
 	
 	private static class QueueNode<E> {
