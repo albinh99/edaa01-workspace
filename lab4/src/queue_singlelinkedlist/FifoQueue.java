@@ -98,14 +98,32 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return an iterator over the elements in this queue
 	 */	
 	public Iterator<E> iterator() {
+
 		return new QueueIterator();
 	}
 
 	private class QueueIterator implements Iterator<E> {
 		private QueueNode<E> pos;
-		private QueueIterator() {...}
-		public boolean hasNext() {...}
-		public E next() {...}
+		private int counter;
+		private QueueIterator() {
+			counter = 0;
+			pos = last;
+		}
+		public boolean hasNext() {
+			if (counter < size-1){
+				counter ++;
+				return true;
+			}
+			return false;
+		}
+		public E next() {
+			if (!hasNext()){
+				 throw new NoSuchElementException();
+			}
+			pos = pos.next;
+			System.out.println("här");
+			return pos.element;
+		}
 	}
 	
 	private static class QueueNode<E> {
