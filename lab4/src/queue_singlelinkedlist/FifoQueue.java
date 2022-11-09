@@ -80,16 +80,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
 		last.next = last.next.next;
 		size --;
-		/*
-		for (int i = 1 ; i < size-1; i ++)
-		{
-			p = p.next;
-		}
-		size --;
-		last = p;
-		System.out.println("nu jag");
 
-		 */
 		return temp;
 	}
 	
@@ -110,18 +101,14 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			pos = last;
 		}
 		public boolean hasNext() {
-			if (counter < size-1){
-				counter ++;
-				return true;
-			}
-			return false;
+			return counter < size;
 		}
 		public E next() {
 			if (!hasNext()){
 				 throw new NoSuchElementException();
 			}
+			counter ++;
 			pos = pos.next;
-			System.out.println("här");
 			return pos.element;
 		}
 	}
@@ -134,6 +121,36 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			element = x;
 			next = null;
 		}
+	}
+
+
+	/**
+	 * Appends the specified queue to this queue
+	 * post: all elements from the specified queue are appended
+	 * to this queue. The specified queue (q) is empty after the call.
+	 *
+	 * @param q the queue to append
+	 * @throws IllegalArgumentException if this queue and q are identical
+	 */
+	public void append(FifoQueue<E> q) {
+		//q = kö2
+
+		if (this.equals(q)){
+			throw new IllegalArgumentException();
+		}
+		if(last == null){
+			last=q.last;
+			size=q.size;
+
+		}
+		if(q.last == null){
+
+			return;
+		}
+		QueueNode<E> temp1 = last.next;
+		last.next = q.last.next;
+		q.last.next = temp1;
+
 	}
 
 }
