@@ -41,21 +41,24 @@ class TestAppendFifoQueueTest {
         Q1.append(Q2);
         assertTrue(Q1.isEmpty(), "Wrong result from empty of queue");
         assertTrue(Q2.isEmpty(), "Wrong result from empty of queue");
+        System.out.println("EmptyPlusEmpty: Q1: " + Q1 + " Q2: " + Q2);
     }
 
     @Test
     void EqualAppend(){
         assertThrows(IllegalArgumentException.class,()->Q1.append(Q1));
+        Q1.offer(2);
+        Q2.offer(4);
     }
     @Test
     void FullPlusEmpty(){
 
         Q1.offer(1);
         Q1.offer(2);
-        FifoQueue<Integer> Q3 = Q1;
         Q1.append(Q2);
         assertTrue(Q2.isEmpty(), "Wrong result from empty of queue");
-        assertEquals(Q3,Q1,"asdasdasdasd");
+        assertEquals(2,Q1.size(),"asdasdasdasd");
+        System.out.println("FullPlusEmpty : Q1: " + Q1 + " Q2: " + Q2);
     }
 
     @Test
@@ -63,11 +66,23 @@ class TestAppendFifoQueueTest {
 
         Q2.offer(1);
         Q2.offer(2);
-        FifoQueue<Integer> Q3 = Q2;
         Q1.append(Q2);
         assertTrue(Q2.isEmpty(), "Wrong result from empty of queue");
+        System.out.println("EmptyPlusFull: Q1: " + Q1 + " Q2: " + Q2);
+        assertEquals(2,Q1.size(),"asdasdasdasd");
+    }
 
-        assertEquals(Q3,Q1,"asdasdasdasd");
+    @Test
+    void FullPlusFull(){
+
+        Q2.offer(1);
+        Q2.offer(2);
+        Q1.offer(56);
+        Q1.offer(9999);
+        Q1.append(Q2);
+        assertTrue(Q2.isEmpty(), "Wrong result from empty of queue");
+        System.out.println("FullPlusFull : Q1: " + Q1 + " Q2: " + Q2);
+        assertEquals(4,Q1.size(),"asdasdasdasd");
     }
 
 
