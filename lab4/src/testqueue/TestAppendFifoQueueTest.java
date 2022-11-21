@@ -67,6 +67,7 @@ class TestAppendFifoQueueTest {
         Q2.offer(1);
         Q2.offer(2);
         Q1.append(Q2);
+        System.out.println(Q1);
         assertTrue(Q2.isEmpty(), "Wrong result from empty of queue");
         System.out.println("EmptyPlusFull: Q1: " + Q1 + " Q2: " + Q2);
         assertEquals(2,Q1.size(),"asdasdasdasd");

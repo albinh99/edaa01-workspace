@@ -21,6 +21,7 @@ public class BookReaderController {
 
         SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(counter.getWordList());
         JList<Map.Entry<String, Integer>> jlista = new JList<>(listModel);
+
         jlista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 
@@ -45,7 +46,7 @@ public class BookReaderController {
             });
 
         freq.addActionListener(e -> {
-                listModel.sort(Map.Entry.comparingByValue());
+                listModel.sort((e1, e2) -> e2.getValue() - e1.getValue());
             });
 
         find.addActionListener(e -> {

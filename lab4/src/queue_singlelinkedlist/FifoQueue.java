@@ -24,7 +24,6 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		if (last == null){
 			last = n;
 			last.next = last;
-			//System.out.println("last: " + last.element);
 		}
 		else{
 		n.next = last.next;
@@ -135,18 +134,17 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	public void append(FifoQueue<E> q) {
 		//q = kö2
 
-		if (this.equals(q)){
+		if (this == q){
 			throw new IllegalArgumentException();
 		}
-		if(last == null){
+		if(last == null){ //append q to empty queue
 			last=q.last;
 			size=q.size;
 			q.size = 0;
 			return;
 
 		}
-		if(q.last == null){
-
+		if(q.last == null){ //append empty queue to non-empty
 			return;
 		}
 		QueueNode<E> temp1 = last.next;
