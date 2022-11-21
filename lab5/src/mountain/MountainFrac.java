@@ -40,6 +40,9 @@ public class MountainFrac extends Fractal {
     }
 
     private void fractalLine(TurtleGraphics g, int order, Point p1, Point p2, Point p3) {
+        sides = new HashMap<>();
+        Side side;
+
         if (order == 0) {
             g.moveTo(p1.getX(),p1.getY());
             g.forwardTo(p2.getX(),p2.getY());
@@ -49,10 +52,19 @@ public class MountainFrac extends Fractal {
         } else {
             int dev1 = (int) Math.round(RandomUtilities.randFunc(dev));
 
-            Point mid13 = new Point(dev1+p1.getX()+(p3.getX()-p1.getX())/2, dev1+p1.getY()+(p3.getY()-p1.getY())/2);
-            Point mid32 = new Point(dev1+p2.getX()+(p3.getX()-p2.getX())/2, dev1+p2.getY()+(p3.getY()-p2.getY())/2);
-            Point mid21 = new Point(dev1+p2.getX()+(p1.getX()-p2.getX())/2, dev1+p1.getY()+(p2.getY()-p1.getY())/2);
+            if(!sides.containsKey(new Side(p1,p3))){
+                Point mid13 = new Point(dev1+p1.getX()+(p3.getX()-p1.getX())/2, dev1+p1.getY()+(p3.getY()-p1.getY())/2);
+                sides.put(new Side(p1,p3), mid13);
+            }
+            if(!sides.containsKey(new Side(p3,p2))){
+                Point mid32 = new Point(dev1+p2.getX()+(p3.getX()-p2.getX())/2, dev1+p2.getY()+(p3.getY()-p2.getY())/2);
+                sides.put(new Side(p3,p2), mid32);
+            }
+            if(!sides.containsKey(new Side(p2,p1))){
+                Point mid21 = new Point(dev1+p2.getX()+(p1.getX()-p2.getX())/2, dev1+p1.getY()+(p2.getY()-p1.getY())/2);
+                sides.put(new Side(p2,p1), mid21);
 
+            }
             g.moveTo(mid13.getX(),mid13.getY());
             g.forwardTo(mid32.getX(),mid32.getY());
             g.forwardTo(mid21.getX(),mid21.getY());
