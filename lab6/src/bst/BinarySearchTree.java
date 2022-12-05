@@ -34,26 +34,27 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		return addRecursive(root, x);
+		BinaryNode<E> temp = new BinaryNode<>(x);
+		temp = addRecursive(root, x);
+
+		if(temp.element == x);
 	}
-	private boolean addRecursive(BinaryNode<E> current, E value){
-		if(root == null){
-			root = new BinaryNode<E>(value);
+	private BinaryNode<E> addRecursive(BinaryNode<E> current, E value){
+
+		if (current == null) {
+			return new BinaryNode<E>(value);
 			size++;
-			return true;
 		}
-		if(current == null){ //gått igenom listan och noden finns inte
-			new BinaryNode<E>(value);
-			size++;
-			return true;
-		}
+
 		else if(((Comparable<E>)value).compareTo(current.element) < 0){ //går till vänster
-			addRecursive(current.left, value);
+			current.left = addRecursive(current.left, value);
 		}
 		else if(((Comparable<E>)value).compareTo(current.element) > 0){ //går till höger
-			addRecursive(current.right, value);
+			current.right = addRecursive(current.right, value);
+		}else{
+			return current;
+
 		}
-		return false;
 	}
 	
 	/**
