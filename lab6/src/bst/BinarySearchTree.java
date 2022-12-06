@@ -97,8 +97,8 @@ public class BinarySearchTree<E> {
 	}
 	private void print(BinaryNode<E> n){
 		if(n != null){
-			System.out.println(n.element);
 			print(n.left);
+			System.out.println(n.element);
 			print(n.right);
 		}
 	}
@@ -109,7 +109,7 @@ public class BinarySearchTree<E> {
 	public void rebuild() {
 		ArrayList<E> emptyList = new ArrayList<E>();
 		toArray(root, emptyList);
-		buildTree(emptyList,0,emptyList.size()-1);
+		root = buildTree(emptyList,0,emptyList.size()-1);
 	}
 	
 	/*
@@ -131,25 +131,15 @@ public class BinarySearchTree<E> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
+		if(first > last) {
+			return null;
+		}
 		int mid = first + (last -first)/2; //hämtar index för mittersta elementet
 		BinaryNode<E> nod = new BinaryNode<>(sorted.get(mid)); //skapar nod med värdet som finns på index mid
 
-		if (first == 0 && last == sorted.size()-1){
-			root = nod;
-			root.left = buildTree(sorted, first, mid - 1);
-			root.right = buildTree(sorted, mid + 1, last);
-		}
-
-		if(first < mid){
-			nod.element = sorted.get(mid);
-			nod.left = buildTree(sorted, first, mid - 1);
-		}
-		if(mid < last){
-			nod.element = sorted.get(mid);
-			nod.right = buildTree(sorted, mid + 1, last);
-		}
-
-		return root;
+		nod.left = buildTree(sorted, first, mid - 1);
+		nod.right = buildTree(sorted, mid + 1, last);
+		return nod;
 	}
 
 	static class BinaryNode<E> {
