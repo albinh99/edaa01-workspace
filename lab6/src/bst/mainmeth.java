@@ -1,19 +1,30 @@
 package bst;
 
-public class mainmeth {
-    public static void main(String[] args) {/*
-        BinarySearchTree <Integer> nod1 = new BinarySearchTree <>();
-        BinarySearchTree <Integer> nod2 = new BinarySearchTree <>();
-        nod1.root.right = nod2.root;
-        nod2.root.right = nod2.root;
-        System.out.println(nod1.height());*/
-        Integer a = 10;
-        Integer b = 5;
-        System.out.println(a.compareTo(b));
+import equals.Person;
 
-        /*
-        BinarySearchTree <Integer> left  = new BinarySearchTree("*", new BinarySearchTree("5", null, null), leftRight);
-        BinarySearchTree <Integer> tree = new BinarySearchTree("+", left, new BinarySearchTree("7", null, null));
-        System.out.println(tree.fullParen());*/
+public class mainmeth {
+    public static void main(String[] args) {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        BinarySearchTree<Person> tree2 = new BinarySearchTree<Person>((p1, p2) -> p1.getName().compareTo(p2.getName()));
+        BinarySearchTree<Person> tree3 = new BinarySearchTree<Person>((p1, p2) -> p1.getId() - p2.getId());
+        Person p1 = new Person("Albin", 123);
+        Person p2 = new Person("Ludvig", 321);
+        BSTVisualizer bst = new BSTVisualizer("Träd", 500, 300);
+
+
+        tree.add(10);
+        tree.add(15);
+        tree.add(19);
+        tree.add(22);
+        tree.add(24);
+        tree.add(27);
+
+
+        tree2.add(p1);
+        tree2.add(p2);
+
+        bst.drawTree(tree);
+        //tree2.printTree();
+
     }
 }

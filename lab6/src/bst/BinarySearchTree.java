@@ -12,16 +12,17 @@ public class BinarySearchTree<E> {
 	/**
 	 * Constructs an empty binary search tree.
 	 */
-	public BinarySearchTree() {
+	public BinarySearchTree() { //implementera comparable
 		root = null;
 		size = 0;
+		comparator =  (e1, e2) -> ((Comparable<E>) e1).compareTo(e2);
 		
 	}
 	
 	/**
 	 * Constructs an empty binary search tree, sorted according to the specified comparator.
 	 */
-	public BinarySearchTree(Comparator<E> comparator) {
+	public BinarySearchTree(Comparator<E> comparator) { //lambda-uttryck som inparameter
 		root = null;
 		size = 0;
 		this.comparator = comparator;
@@ -34,27 +35,28 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		BinaryNode<E> temp = new BinaryNode<>(x);
-		temp = addRecursive(root, x);
+		int temp = size;
+		root = addRecursive(root, x);
+		if(size == temp){
+			return false;
+		}
+		return true;
 
-		if(temp.element == x);
 	}
 	private BinaryNode<E> addRecursive(BinaryNode<E> current, E value){
-
 		if (current == null) {
-			return new BinaryNode<E>(value);
 			size++;
+			return new BinaryNode<E>(value);
 		}
-
-		else if(((Comparable<E>)value).compareTo(current.element) < 0){ //går till vänster
+		else if(comparator.compare(value, current.element) < 0){ //går till vänster
 			current.left = addRecursive(current.left, value);
 		}
-		else if(((Comparable<E>)value).compareTo(current.element) > 0){ //går till höger
+		else if(comparator.compare(value, current.element) > 0){ //går till höger
 			current.right = addRecursive(current.right, value);
 		}else{
 			return current;
-
 		}
+		return current;
 	}
 	
 	/**
@@ -76,9 +78,6 @@ public class BinarySearchTree<E> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return size(root);
-	}
-	private int size(BinaryNode<E> root){
 		return size;
 	}
 
@@ -88,7 +87,6 @@ public class BinarySearchTree<E> {
 	public void clear() {
 		size = 0;
 		root = null;
-
 		}
 	
 	/**
@@ -109,6 +107,8 @@ public class BinarySearchTree<E> {
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
+		ArrayList<E> emptyList = new ArrayList<E>();
+		toArray(root, emptyList);
 
 	}
 	
@@ -116,6 +116,10 @@ public class BinarySearchTree<E> {
 	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 	 */
 	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) {
+		if(n == null){
+			sorted.add
+		}
+
 	
 	}
 	
