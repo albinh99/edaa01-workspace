@@ -109,9 +109,7 @@ public class BinarySearchTree<E> {
 	public void rebuild() {
 		ArrayList<E> emptyList = new ArrayList<E>();
 		toArray(root, emptyList);
-
-		System.out.println(emptyList);
-
+		buildTree(emptyList,0,emptyList.size()-1);
 	}
 	
 	/*
@@ -123,7 +121,7 @@ public class BinarySearchTree<E> {
 			sorted.add(n.element);
 			toArray(n.right,sorted);
 		}
-		buildTree(sorted,0,sorted.size()-1);
+
 	}
 	
 	/*
@@ -137,26 +135,21 @@ public class BinarySearchTree<E> {
 		BinaryNode<E> nod = new BinaryNode<>(sorted.get(mid)); //skapar nod med värdet som finns på index mid
 
 		if (first == 0 && last == sorted.size()-1){
-			root.element = sorted.get(mid);
-			nod = root;
+			root = nod;
+			root.left = buildTree(sorted, first, mid - 1);
+			root.right = buildTree(sorted, mid + 1, last);
 		}
 
-
-		nod.element = sorted.get(mid - (first+mid)/2);
-		nod.left = nod;
-		nod.element = sorted.get(mid + (first+mid)/2);
-		root.right = nod;
-
-		buildTree(sorted, )
-
-
-
+		if(first < mid){
 			nod.element = sorted.get(mid);
 			nod.left = buildTree(sorted, first, mid - 1);
+		}
+		if(mid < last){
+			nod.element = sorted.get(mid);
+			nod.right = buildTree(sorted, mid + 1, last);
+		}
 
-		nod.right = buildTree(sorted, mid + 1, last);
-
-		return null;
+		return root;
 	}
 
 	static class BinaryNode<E> {
