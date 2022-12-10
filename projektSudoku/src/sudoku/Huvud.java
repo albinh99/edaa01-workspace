@@ -1,8 +1,13 @@
 package sudoku;
 
+import javax.swing.*;
+
 public class Huvud {
     public static void main(String[] args) {
-        Gui a = new Gui();
+        SudokuClass sudoku = new SudokuClass();
+        Gui g = new Gui(sudoku);
+
+
 
     }
 }
