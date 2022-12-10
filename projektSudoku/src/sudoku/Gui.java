@@ -18,33 +18,26 @@ public class Gui extends JFrame{
     private void createWindow(SudokuClass sudoku, String title,
                               int width, int height) {
 
-        JFrame frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Container pane = frame.getContentPane();
+        final Border fieldBorder = BorderFactory.createLineBorder(Color.BLACK);
 
-
-        JPanel board = new JPanel(new GridLayout(9,9));
-        add(board);
-
-        JTextField[][] squares =  new JTextField[9][9];
-
-        Border border = BorderFactory.createLineBorder(Color.BLACK);
-
-        for (int row = 0; row < 9; row ++ ){
-            for (int col = 0; col < 9; col ++){
-                squares[row][col] = new JTextField();
-                board.add(squares[row][col]);
-            }
+        final JPanel grid = new JPanel(new GridLayout(9, 0));
+        for (int i = 0; i < 81; ++i) {
+            final JTextField field = new JTextField(2);
+            field.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
+            field.setBorder(fieldBorder); //Add the colored border.
+            grid.add(field);
         }
 
-        JPanel menu = new JPanel();
-        menu.add(new JButton("Clear"));
-        menu.add(new JButton("Solve"));
-        add(menu);
+        final JPanel centeredGrid = new JPanel(new GridBagLayout());
+        centeredGrid.add(grid);
 
-
+        final JFrame frame = new JFrame("Sudoku");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(centeredGrid);
         frame.pack();
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
+
 
 
     }

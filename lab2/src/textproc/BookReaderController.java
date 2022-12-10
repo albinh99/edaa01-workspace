@@ -75,8 +75,6 @@ public class BookReaderController {
         pane.add(scrollPane, BorderLayout.CENTER);
 
 
-
-
         // pane är en behållarkomponent till vilken de övriga komponenterna (listvy, knappar etc.) ska läggas till.
         frame.pack();
         frame.setVisible(true);
