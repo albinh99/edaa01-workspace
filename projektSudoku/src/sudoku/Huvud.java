@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class Huvud {
     public static void main(String[] args) {
+
         SudokuClass sudoku = new SudokuClass();
         sudoku.add(2,4,1);
         sudoku.add(3,3,1);
@@ -21,6 +22,7 @@ public class Huvud {
        // for (int i = 0; i<9; i++){
          //  System.out.println((Arrays.toString(sudoku.matris[i])));
         //}
+
 
 
 

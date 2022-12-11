@@ -29,9 +29,9 @@ public class BookReaderController {
 
         JRadioButton alpha = new JRadioButton("Alphabetic");
         JRadioButton freq = new JRadioButton("Frequency");
-            ButtonGroup group = new ButtonGroup();
+        ButtonGroup group = new ButtonGroup();
         JTextField textField = new JTextField();
-            textField.setPreferredSize(new Dimension(300,25));
+        textField.setPreferredSize(new Dimension(300,25));
         JButton find = new JButton("Find");
         group.add(alpha);
         group.add(freq);
@@ -42,27 +42,27 @@ public class BookReaderController {
         pane.add(southPanel, BorderLayout.SOUTH);
 
         alpha.addActionListener(e -> {
-                listModel.sort(Map.Entry.comparingByKey());
-            });
+            listModel.sort(Map.Entry.comparingByKey());
+        });
 
         freq.addActionListener(e -> {
-                listModel.sort((e1, e2) -> e2.getValue() - e1.getValue());
-            });
+            listModel.sort((e1, e2) -> e2.getValue() - e1.getValue());
+        });
 
         find.addActionListener(e -> {
-                boolean wordNotInList = true;
-                for (int i = 0;  i < listModel.getSize(); i ++){
+            boolean wordNotInList = true;
+            for (int i = 0;  i < listModel.getSize(); i ++){
 
-                    if(listModel.getElementAt(i).getKey().equals(textField.getText())){
-                        jlista.ensureIndexIsVisible(i);
-                        jlista.setSelectedIndex(i);
-                        wordNotInList = false;
-                    }
-                    else if (i == listModel.getSize()-1 && wordNotInList){
-                        JOptionPane.showMessageDialog(null, "Ordet finns inte");
-                    }
-
+                if(listModel.getElementAt(i).getKey().equals(textField.getText())){
+                    jlista.ensureIndexIsVisible(i);
+                    jlista.setSelectedIndex(i);
+                    wordNotInList = false;
                 }
+                else if (i == listModel.getSize()-1 && wordNotInList){
+                    JOptionPane.showMessageDialog(null, "Ordet finns inte");
+                }
+
+            }
         });
         frame.getRootPane().setDefaultButton(find); // söker på enter
 
