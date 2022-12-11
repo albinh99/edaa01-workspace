@@ -11,31 +11,37 @@ public class SudokuClass implements SudokuSolver {
 
     @Override
     public boolean solve() {
+        if (isValid()) {
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
 
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
 
-                if (matris[row][col] == 0) { //kollar om cellen är tom, dvs har värdet 0 (har ej ändrats av användaren)
-                    for (int k = 1; k <= 9; k++) { //loopar igenom 1-9
-                        if (possible(row, col, k)) { //testar om siffran fungerar att sätta in utifrån kraven
-                            add(row, col, k); //lägger in värdet
+                    if (matris[row][col] == 0) { //kollar om cellen är tom, dvs har värdet 0 (har ej ändrats av användaren)
+                        for (int k = 1; k <= 9; k++) { //loopar igenom 1-9
+                            if (possible(row, col, k)) { //testar om siffran fungerar att sätta in utifrån kraven
+                                add(row, col, k); //lägger in värdet
 
-                            if (solve()) { //backtracking
-                                return true;
-                            } else {
-                                matris[row][col] = 0; //om det inte finns en lösning sätter vi cellen till 0 och fortsätter
-                                //return false;
+                                if (solve()) { //backtracking
+                                    return true;
+                                } else {
+                                    matris[row][col] = 0; //om det inte finns en lösning sätter vi cellen till 0 och fortsätter
+                                    //return false;
+                                }
                             }
                         }
+                        return false;
                     }
-                    return false;
+
+
                 }
-
             }
+            return true; //sudokut är löst
         }
-        return true; //sudokut är löst
-    }
+        else {
+            return false;
+        }
 
+    }
     private boolean possible(int row, int col, int val) {
 
         for (int i = 0; i < 9; i++) {

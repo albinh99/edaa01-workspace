@@ -7,16 +7,16 @@ public class Huvud {
     public static void main(String[] args) {
 
         SudokuClass sudoku = new SudokuClass();
-        sudoku.add(2,4,1);
-        sudoku.add(3,3,1);
+        sudoku.add(0,0,1);
+        sudoku.add(8,0,1);
         //sudoku.add(2,8,5);
         //sudoku.add(3,6,1);
         //sudoku.add(7,7,1);
-        sudoku.solve();
+        //System.out.println(sudoku.solve());
 
 
 
-        Gui g = new Gui(sudoku);
+        SudokuGUI g = new SudokuGUI(sudoku);
         //System.out.println(sudoku.isValid());
         //System.out.println(Arrays.deepToString(sudoku.matris));
        // for (int i = 0; i<9; i++){
