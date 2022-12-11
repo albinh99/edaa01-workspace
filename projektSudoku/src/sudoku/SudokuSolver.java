@@ -2,7 +2,8 @@ package sudoku;
 
 public interface SudokuSolver {
     /**
-     * To be done
+     * Tries to solve the sudoku
+     * Returns true if solution is found, false otherwise
      */
     boolean solve();
 
@@ -18,12 +19,16 @@ public interface SudokuSolver {
     void add(int row, int col, int digit);
 
     /**
-     * To be done
+     * Removes the digit on the corresponding grid coordinates, (row, col)
+     * @param row   The row
+     * @param col   The column
      */
     void remove(int row, int col);
 
     /**
-     * To be done
+     * Returns the digit on the corresponding grid coordinates, (row, col)
+     * @param row   The row
+     * @param col   The column
      */
     int get(int row, int col);
 
@@ -33,7 +38,7 @@ public interface SudokuSolver {
     boolean isValid();
 
     /**
-     * To be done
+     * Clears all values from the sudoku board by setting them to zero
      */
     void clear();
 
@@ -47,7 +52,7 @@ public interface SudokuSolver {
     void setMatrix(int[][] m);
 
     /**
-     * To be done
+     * Returns the sudoku board with empty values represented by zeros.
      */
     int[][] getMatrix();
 }

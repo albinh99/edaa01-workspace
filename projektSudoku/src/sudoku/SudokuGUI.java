@@ -10,17 +10,17 @@ import java.util.*;
 public class SudokuGUI extends JFrame{
 
     SudokuSolver sudoku;
-    JTextField [][] matrisgui = new JTextField[9][9];
+    JTextField [][] guiMatrix = new JTextField[9][9];
 
     public SudokuGUI(SudokuSolver sudoku) {
-        SwingUtilities.invokeLater(() -> createWindow(sudoku, "Sudoku"));
+        SwingUtilities.invokeLater(() -> createWindow(sudoku));
         this.sudoku = sudoku;
     }
 
-    private void createWindow(SudokuSolver sudoku, String title) {
+    private void createWindow(SudokuSolver sudoku) {
 
 
-        JFrame frame = new JFrame(title);
+        JFrame frame = new JFrame("Sudoku");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
 
@@ -43,19 +43,19 @@ public class SudokuGUI extends JFrame{
                 boxes.setHorizontalAlignment(JTextField.CENTER); //Center text horizontally in the text field.
                 boxes.setBorder(fieldBorder); //Add the colored border.
                 boxes.setFont(font1);
-                matrisgui[i][j] = boxes;
-                setColor(i,j,matrisgui[i][j]);
+                guiMatrix[i][j] = boxes;
+                setColor(i,j, guiMatrix[i][j]);
                 boxes.addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        if (boxes.getText().length() >= 1 || e.getKeyChar()>'9' || e.getKeyChar()<'1') // limit textfield to 3 characters
+                        if (boxes.getText().length() >= 1 || e.getKeyChar()>'9' || e.getKeyChar()<'1') // limit text-field to 3 characters
                             e.consume();
                     }});
                 grid.add(boxes);
             }
         }
 
-        solveButton.addActionListener(e -> {
+        solveButton.addActionListener(e -> { //knapp för solve
             buildFirstMatrix();
             if (sudoku.isValid() && sudoku.solve()){
                 buildFinalMatrix();
@@ -67,9 +67,7 @@ public class SudokuGUI extends JFrame{
 
 
 
-        clearButton.addActionListener(e-> {
-            clearMatrix();
-        });
+        clearButton.addActionListener(e-> clearMatrix());
 
 
         final JPanel centeredGrid = new JPanel(new GridBagLayout());
@@ -87,10 +85,10 @@ public class SudokuGUI extends JFrame{
     private void buildFirstMatrix(){
         for (int i = 0; i<9; i++){
             for (int j = 0; j <9; j++){
-                if (Objects.equals(matrisgui[i][j].getText(), "")) {
+                if (Objects.equals(guiMatrix[i][j].getText(), "")) {
                     sudoku.add(i,j,0);
                 }else {
-                sudoku.add(i,j,Integer.parseInt(matrisgui[i][j].getText()));
+                sudoku.add(i,j,Integer.parseInt(guiMatrix[i][j].getText()));
             }
         }
     }
@@ -98,7 +96,7 @@ public class SudokuGUI extends JFrame{
     private void buildFinalMatrix() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                matrisgui[i][j].setText( String.valueOf(sudoku.get(i, j)));
+                guiMatrix[i][j].setText( String.valueOf(sudoku.get(i, j)));
 
             }
         }
@@ -109,7 +107,7 @@ public class SudokuGUI extends JFrame{
         sudoku.clear();
         for (int i = 0; i<9; i++){
             for (int j = 0; j <9; j++){
-                matrisgui[i][j].setText("");
+                guiMatrix[i][j].setText("");
             }
     }
 
