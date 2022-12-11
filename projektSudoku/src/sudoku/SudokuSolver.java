@@ -28,7 +28,7 @@ public interface SudokuSolver {
     int get(int row, int col);
 
     /**
-     * Checks that all filled in digits follows the the sudoku rules.
+     * Checks that all filled in digits follows the sudoku rules.
      */
     boolean isValid();
 

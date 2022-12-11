@@ -6,6 +6,14 @@ import java.util.Arrays;
 public class Huvud {
     public static void main(String[] args) {
         SudokuClass sudoku = new SudokuClass();
+        sudoku.add(0,0,1);
+        sudoku.add(0,1,1);
+        sudoku.add(2,8,5);
+        sudoku.add(3,6,1);
+        //sudoku.add(7,7,1);
+
+
+
         //Gui g = new Gui(sudoku);
         sudoku.solve();
         //System.out.println(Arrays.deepToString(sudoku.matris));
