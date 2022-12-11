@@ -30,9 +30,6 @@ public class SudokuClass implements SudokuSolver {
                     }
                     return false;
                 }
-                else if(matris[row][col] != 0){
-                    return possible(row, col, get(row, col));
-                }
 
             }
         }
@@ -81,11 +78,29 @@ public class SudokuClass implements SudokuSolver {
 
     @Override
     public boolean isValid() {
-        return false;
+        for(int row = 0; row < 9; row++){
+            for(int col = 0; col < 9; col++){
+                if(matris[row][col] != 0){
+                    int temp = matris[row][col];
+                    matris[row][col] = 0;
+                    if(possible(row, col, temp)){
+                        matris[row][col] = temp;
+                    }else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public void clear() {
+        for(int row = 0; row < 9; row++){
+            for(int col = 0; col < 9; col++) {
+                matris[row][col] = 0;
+            }
+        }
 
     }
 
@@ -98,6 +113,6 @@ public class SudokuClass implements SudokuSolver {
 
     @Override
     public int[][] getMatrix() {
-        return new int[0][];
+        return matris.clone();
     }
 }
