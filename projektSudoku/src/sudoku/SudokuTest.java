@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SudokuTest {
 
 
-    private SudokuClass sudoku;
+    private SudokuSolverClass sudoku;
 
     @BeforeEach
     void setUp(){
-        sudoku = new SudokuClass();
+        sudoku = new SudokuSolverClass();
     }
 
     @AfterEach
@@ -80,6 +80,21 @@ public class SudokuTest {
         assertTrue(sudoku.solve());
 
     }
+
+    @Test
+    void add(){
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(4,10,4));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(10,4,4));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(4,4,10));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(4,4,-12));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(4,-4,4));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(-4,4,1));
+        assertThrows(IllegalArgumentException.class,() -> sudoku.add(14,14,10));
+
+        sudoku.add(1,2,6);
+        assertEquals(6,sudoku.get(1,2));
+    }
+
     @Test
     void GetValue(){
         sudoku.add(1,2,6);

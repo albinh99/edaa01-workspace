@@ -19,14 +19,14 @@ public interface SudokuSolver {
     void add(int row, int col, int digit);
 
     /**
-     * Removes the digit on the corresponding grid coordinates, (row, col)
+     * Removes the digit on the corresponding grid coordinates, (row, col).
      * @param row   The row
      * @param col   The column
      */
     void remove(int row, int col);
 
     /**
-     * Returns the digit on the corresponding grid coordinates, (row, col)
+     * Returns the digit on the corresponding grid coordinates, (row, col).
      * @param row   The row
      * @param col   The column
      */

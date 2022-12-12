@@ -1,12 +1,12 @@
 package sudoku;
 
 
-public class SudokuClass implements SudokuSolver {
+public class SudokuSolverClass implements SudokuSolver {
 
-    public int[][] sudokuGrid;
+    private int[][] sudokuGrid;
 
 
-    public SudokuClass() {
+    public SudokuSolverClass() {
         this.sudokuGrid = new int[9][9];
     }
 
@@ -68,7 +68,10 @@ public class SudokuClass implements SudokuSolver {
 
     @Override
     public void add(int row, int col, int digit) { //lägger till en siffra på row, col
+        if(0<=row && row<9 && 0<=col && col<9 && 0<=digit && digit<=9){
         sudokuGrid[row][col] = digit;
+        }
+        else {throw new IllegalArgumentException();}
     }
 
     @Override
