@@ -27,6 +27,7 @@ public class SudokuGUI extends JFrame{
 
         Border fieldBorder = BorderFactory.createLineBorder(Color.BLACK); //gränsen mellan rutorna
         JPanel grid = new JPanel(new GridLayout(9, 9, 2,2)); // Panel som är ett 9x9 rutnät
+        grid.setPreferredSize(new Dimension(550, 550)); //sätter dimensionerna på griden
         Font font1 = new Font("SansSerif", Font.BOLD, 40); // font sätts för att rutorna och texten ska få rätt storlek
 
         //Lägger till en panel underst i fönstret för knapparna
